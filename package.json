@@ -1,0 +1,19 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "CMPS369 Final Project CRUD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JackStrick/Contact-Map-Crud.git"
+  },
+  "author": "Jack Strickland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JackStrick/Contact-Map-Crud/issues"
+  },
+  "homepage": "https://github.com/JackStrick/Contact-Map-Crud#readme"
+}
