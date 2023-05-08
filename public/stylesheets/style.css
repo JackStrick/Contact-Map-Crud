@@ -1,0 +1,97 @@
+
+.lead{
+    padding-left: 1em;
+}
+
+legend{
+    margin-top: .5em;
+}
+
+table {
+    margin-bottom: 3em;
+}
+
+th {
+    text-align: left;
+}
+
+
+.btn{
+    margin: 1em;
+}
+
+.form-check-label{
+    padding-left: 1em;
+}
+
+.btn.btn-primary.return-btn{
+    text-align: right;
+}
+
+.small-card{
+    width: 18rem;
+}
+
+.med-card{
+    width: 24rem;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.card{
+    margin-bottom: 2em;
+}
+
+@media screen and (min-width: 768px) {
+    .container{
+        margin-top: 1.5em;
+    }
+
+    .delete{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0.25rem;
+    }
+
+    .container>* {
+        margin-top: 1.25rem;
+    }
+
+    .delete{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+    }
+
+    .upper-card{
+        width: 80%;
+    }
+
+    .med-card{
+        text-align: center;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+}
