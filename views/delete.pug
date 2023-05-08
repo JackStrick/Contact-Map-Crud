@@ -1,0 +1,14 @@
+extends layout.pug 
+
+block content 
+
+    .container 
+        .row 
+            .alert.alert-danger.delete
+                h1.text-center Delete Contact 
+                hr
+                h3 #{contact.first_name + ' ' + contact.last_name}
+                p  Are you sure you want to delete this contact?
+                form(action='/' + id + '/delete', method='post')
+                    button.btn.btn-danger(type=submit) Delete 
+                    a.btn.btn-primary(href='/'+ id) Nevermind

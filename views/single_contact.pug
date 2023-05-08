@@ -1,0 +1,59 @@
+extends layout.pug 
+
+block content
+    .container
+        .row 
+            .col 
+                .card 
+                    .card-header 
+                        h1.text-center Contact Info
+                    .card-body
+                        h2 #{contact.first_name + " " + contact.last_name}
+                        hr
+                        
+
+                        p 
+                            b Phone number: 
+                            span #{contact.phone}
+                        p
+                            i May 
+                            if !(contact.contact_by_phone)
+                                i NOT 
+                            i be contacted by phone
+                        hr
+
+                        p
+                            b Email address: 
+                            span #{contact.email}
+                        p
+                            i May 
+                            if !(contact.contact_by_email)
+                                i NOT 
+                            i be contacted by email
+                        hr
+                        p   
+                            b Address: 
+                            section 
+                                span #{contact.street} 
+                                span #{contact.city}
+                                span , 
+                                span #{contact.state} 
+                                span #{contact.zip} 
+                            section #{contact.country}
+                        p
+                            i May 
+                            if !(contact.contact_by_mail)
+                                i NOT 
+                            i be contacted by mail
+            
+            .col
+                .card.med-card.mx-auto
+                    .card-body
+                        .card-title
+                            h5 Options 
+                        .card-subtitle.mb-2.text-muted 
+                            h6 What would you like to do?
+                        
+                        a.btn.btn-secondary(href="/" + contact.id + "/edit") Edit
+                        a.btn.btn-danger(href="/" + contact.id + "/delete") Delete
+                        a.btn.btn-primary(href='/') Return

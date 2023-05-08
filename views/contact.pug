@@ -1,0 +1,55 @@
+extends layout.pug 
+
+block content
+
+    .container 
+        .row 
+            .card.upper-card.mx-auto
+                    .card-body
+                        .card-title
+                            h5 Create New 
+                        .card-subtitle.mb-2.text-muted 
+                            h6 Click below to create a new contact
+                        a.btn.btn-primary(href='/create') Create
+        .row
+            .table-responsive-xxl
+                table.table.table-striped
+                    h1 Contact List
+                    thead 
+                        tr  
+                            th Name 
+                            th Phone 
+                            th Email 
+                            th Address 
+                            th Contact 
+                    tbody 
+                        if contacts
+                            each c in contacts
+                                tr
+                                    td
+                                        section
+                                            a(href="/" + c.id) #{c.first_name + " " + c.last_name}
+                                    td 
+                                        section #{c.phone}
+                                    td 
+                                        section #{c.email}
+                                    td 
+                                        section #{c.street}
+                                        section 
+                                            span #{c.city}
+                                            span , 
+                                            span #{c.state} 
+                                            span #{c.zip}
+                                        section #{c.country}
+
+                                    td
+                                        section 
+                                            input.form-check-input.form-inline(type='checkbox', name='contact_by_mail', checked=(c.contact_by_mail === 1 ? true : false), disabled=true)    
+                                            label.form-check-label.form-inline(for='contact_by_mail') Mail
+                                        section 
+                                            input.form-check-input.form-inline(type='checkbox', name='contact_by_phone', checked=(c.contact_by_phone === 1 ? true : false), disabled=true)    
+                                            label.form-check-label.form-inline(for='contact_by_phone') Phone
+                                        section  
+                                            input.form-check-input.form-inline(type='checkbox', name='contact_by_email', checked=(c.contact_by_email === 1 ? true : false), disabled=true)    
+                                            label.form-check-label.form-inline(for='contact_by_email') Email
+                

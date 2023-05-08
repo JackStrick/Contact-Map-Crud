@@ -1,0 +1,72 @@
+extends layout.pug
+
+block content
+
+    .container 
+        .row 
+            .col 
+                .card 
+                    .card-header
+                        h1 Create Contact
+                    .card-body
+                        form(action='/create', method='post')
+                            .form-group
+                                fieldset 
+                                    legend Basic Info 
+                                    section      
+                                        label(for='first_name') First Name:
+                                        input.form-control(type='text', name='first_name', required)
+
+                                    section   
+                                        label(for='last_name') Last Name:
+                                        br
+                                        input.form-control(type='text', name='last_name', required)
+                                    section
+                                        label(for='phone') Phone:
+                                        br
+                                        input.form-control(type='text', name='phone', required)
+                                    section 
+                                        label(for='email') Email:
+                                        br
+                                        input.form-control(type='text', name='email', required)
+                                
+                                fieldset 
+                                    legend Address
+                                    section      
+                                        label(for='street') Street:
+                                        br
+                                        input.form-control(type='text', name='street', required)
+                                    section   
+                                        label(for='city') City:
+                                        br
+                                        input.form-control(type='text', name='city', required)
+                                    section
+                                        label(for='state') State:
+                                        br
+                                        input.form-control(type='text', name='state', required)
+                                    section 
+                                        label(for='zip') Zip:
+                                        br
+                                        input.form-control(type='text', name='zip', required)
+                                    section 
+                                        label(for='country') Country:
+                                        br
+                                        input.form-control(type='text', name='country', required)
+                                fieldset 
+                                    legend Contact Preferences
+                                    section  
+                                        input.form-check-input(type='checkbox', name='contact_by_mail')    
+                                        label.form-check-label(for='contact_by_mail') Contact by mail
+                                    section  
+                                        input.form-check-input(type='checkbox', name='contact_by_phone')    
+                                        label.form-check-label(for='contact_by_phone') Contact by phone
+                                    section  
+                                        input.form-check-input(type='checkbox', name='contact_by_email')    
+                                        label.form-check-label(for='contact_by_email') Contact by email                 
+                                section.text-center
+                                    button.btn.btn-success(type='submit') Add
+                                    a.btn.btn-secondary(href="/") Cancel
+                                if message 
+                                    p.alert.alert-danger #{message}
+                        
+                        

@@ -1,0 +1,40 @@
+extends layout.pug
+
+block content
+    .container 
+        .row 
+            .col 
+                .card 
+                    .card-header
+                        h1 Sign up 
+                    .card-body
+                        form(action='/signup', method='post')
+                            .form-group
+                                label(for='firstname') First Name
+                                input.form-control(type='text', name='firstname', required)
+
+                                label(for='lastname') Last Name
+                                input.form-control(type='text', name='lastname', required)
+                    
+                                label(for='username') Username
+                                input.form-control(type='text', name='username', required)
+                            
+                                label(for='password') Password
+                                input.form-control(type='password', name='password', required)
+                            
+                                label(for='password2') Confirm Password
+                                input.form-control(type='password', name='password2', required)
+                            
+                                button.btn.btn-primary(type='submit') Sign up
+                                a.btn.btn-primary(href="/") Nevermind
+                            if message 
+                                p.alert.alert-danger #{message}
+            .col
+                .card.med-card.mx-auto
+                    .card-body
+                        .card-title
+                            h5 Already have an account?  
+                        .card-subtitle.mb-2.text-muted 
+                            h6 Click below to sign in
+                        a.btn.btn-primary(href='/login') Sign in!
+    

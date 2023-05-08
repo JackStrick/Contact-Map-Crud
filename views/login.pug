@@ -1,0 +1,30 @@
+extends layout.pug
+
+block content
+    .container 
+        .row 
+            .col 
+                .card
+                    .card-header
+                        h1 Sign in
+                    .card-body
+                        form(action='/login', method='post')
+                            .form-group
+                                label(for='username') Username
+                                input.form-control(type='text', name='username', required)
+                                label(for="password") Password
+                                input.form-control(type='password', name='password', required)  
+                            .form-group
+                                button.btn.btn-primary(type='submit') Sign in
+                                a.btn.btn-primary(href="/") Nevermind
+
+                            if message 
+                                p #{message}
+            .col
+                .card.med-card.mx-auto
+                    .card-body
+                        .card-title
+                            h5 Don't have an account yet? 
+                        .card-subtitle.mb-2.text-muted 
+                            h6 Click below to sign up
+                        a.btn.btn-primary(href='/signup') Sign up!

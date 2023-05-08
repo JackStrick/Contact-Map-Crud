@@ -16,6 +16,7 @@ class CrudDB {
             { name: 'last_name', type: 'TEXT' },
             { name: 'phone', type: 'TEXT' },
             { name: 'email', type: 'TEXT' },
+            { name: 'title', type: 'TEXT'},
             { name: 'street', type: 'TEXT' },
             { name: 'city', type: 'TEXT' },
             { name: 'state', type: 'TEXT' },
@@ -23,6 +24,9 @@ class CrudDB {
             { name: 'country', type: 'TEXT' },
             { name: 'contact_by_email', type: 'NUMERIC' },
             { name: 'contact_by_phone', type: 'NUMERIC' },
+            { name: 'contact_by_mail', type: 'NUMERIC' },
+            { name: 'lat', type: 'NUMERIC' },
+            { name: 'lng', type: 'NUMERIC'  },
         ], 'id');
 
         await this.db.schema('Users', [
@@ -49,7 +53,7 @@ class CrudDB {
    
     }
 
-    async createContact(fname, lname, phone, email, street, city,  state, zip, country, contact_by_phone, contact_by_email) {
+    async createContact(fname, lname, phone, email, street, city,  state, zip, country, contact_by_mail, contact_by_phone, contact_by_email, lat, lng) {
         const id = await this.db.create('Contact', [
             { column: 'first_name', value: fname },
             { column: 'last_name', value: lname },
@@ -60,8 +64,11 @@ class CrudDB {
             { column: 'state', value: state },
             { column: 'zip', value: zip },
             { column: 'country', value: country },
+            { column: 'contact_by_mail', value: contact_by_mail},
             { column: 'contact_by_phone', value: contact_by_phone },
-            { column: 'contact_by_email', value: contact_by_email }
+            { column: 'contact_by_email', value: contact_by_email },
+            { column: 'lat', value: lat},
+            { column: 'lng', value: lng}
         ])
     }
 
@@ -121,7 +128,7 @@ class CrudDB {
         }
     }
 
-    async updateContact(fname, lname, phone, email, street, city,  state, zip, country, contact_by_phone, contact_by_email, id) {
+    async updateContact(fname, lname, phone, email, street, city,  state, zip, country, contact_by_mail, contact_by_phone, contact_by_email, lat, lng, id) {
         await this.db.update('Contact', [
             { column: 'first_name', value: fname },
             { column: 'last_name', value: lname },
@@ -133,8 +140,10 @@ class CrudDB {
             { column: 'zip', value: zip },
             { column: 'country', value: country },
             { column: 'contact_by_phone', value: contact_by_phone },
-            { column: 'contact_by_email', value: contact_by_email }], 
-        
+            { column: 'contact_by_email', value: contact_by_email },
+            { column: 'contact_by_mail', value: contact_by_mail},
+            { column: 'lat', value: lat},
+            { column: 'lng', value: lng}], 
             [{ column: 'id', value: id }]
         );
     }
