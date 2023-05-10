@@ -48,9 +48,6 @@ app.use(express.static('public'));
 
 app.use('/', require('./routes/accounts'));
 app.use('/', require('./routes/contacts'));
-//app.use('/places', require('./routes/places'));
-
-//app.use('/something', require('./routes/something'));
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`)

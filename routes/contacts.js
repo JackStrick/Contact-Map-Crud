@@ -92,7 +92,7 @@ router.get('/:id', async (req, res) => {
         res.redirect('/');
     } 
     else {
-        res.render('single_contact', {contact: contact});
+        res.render('single_contact', {contact: contact, req: req});
     }
     
     
@@ -105,7 +105,7 @@ router.get('/:id/edit', async (req, res) => {
         res.render('update_contact', {contact: contact, id: id});
     }
     else {
-        res.status(401).send("Not Authorized")
+        res.redirect('/login');
     }
 });
 
@@ -163,7 +163,7 @@ router.get('/:id/delete', async (req, res) => {
         res.render('delete', {contact: contact, id: id})
     }
     else {
-        res.status(401).send("Not Authorized")
+        res.redirect('/login');
     }
 });
 

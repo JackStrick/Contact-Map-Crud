@@ -54,6 +54,7 @@ block content
                         .card-subtitle.mb-2.text-muted 
                             h6 What would you like to do?
                         
-                        a.btn.btn-secondary(href="/" + contact.id + "/edit") Edit
-                        a.btn.btn-danger(href="/" + contact.id + "/delete") Delete
+                        if (req.session.user !== undefined)
+                            a.btn.btn-secondary(href="/" + contact.id + "/edit") Edit
+                            a.btn.btn-danger(href="/" + contact.id + "/delete") Delete
                         a.btn.btn-primary(href='/') Return
