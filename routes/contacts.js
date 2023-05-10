@@ -5,11 +5,25 @@ const geocoder = geo({ provider: 'openstreetmap' });
 
 
 
+const getGeo = async (address) => {
+    console.log("Checking address: " + address);
+    const location = geocoder.geocode(address);
+    return location;
+}
+
+
+
 router.get('/', async (req, res) => {
     const contacts = await req.db.getAllContacts();
-    console.log(contacts);
+    //console.log(contacts);
     res.render('contact', {contacts: contacts});
     console.log("Home page attempt")
+});
+
+router.get('/places', async (req, res) => {
+    const contacts = await req.db.getAllContacts();
+    console.log(contacts);
+    res.json({ contacts: contacts });
 });
 
 
@@ -39,23 +53,34 @@ router.post('/create', async (req, res) => {
     
     //GET LAT LNG
     const address = street + " " + city + " " + state + " " + zip + " " + country;
-    const location = await geocoder.geocode(address);
+    const location = await getGeo(address);
     console.log(location);
-    if (location[0]){
-        
-        const new_street = location[0].streetNumber + " " + location[0].streetName;
-        const new_city = location[0].city;
-        const new_state = location[0].state;
-        const new_zip = location[0].zipcode;
-        const new_country = location[0].country;
-        const lat = location[0].latitude;
-        const lng = location[0].longitude;
-        
-        
+    
+    var lat;
+    var lng;
+    var new_street;
+    var new_city;
+    var new_state;
+    var new_zip;
+    var new_country;
+    console.log(location);
+    if (location[0])
+    {    
+        new_street = location[0].streetNumber + " " + location[0].streetName;
+        new_city = location[0].city;
+        new_state = location[0].state;
+        new_zip = location[0].zipcode;
+        new_country = location[0].country;
+        lat = location[0].latitude;
+        lng = location[0].longitude;
         await req.db.createContact(fname, lname, phone, email, new_street, new_city,  new_state, new_zip, new_country, contact_by_mail, contact_by_phone, contact_by_email, lat, lng);
-   
-        res.redirect('/');
+        console.log("NEW CONTACT CREATED");
     }
+    else {
+        console.log("\n\n\n*********NO LOCATION FOUND***********\n\n\n");
+    }
+    
+    res.redirect('/');
 });
 
 
@@ -101,25 +126,33 @@ router.post('/:id/edit', async (req, res) => {
 
     //GET LAT LNG
     const address = street + " " + city + " " + state + " " + zip + " " + country;
-    console.log(address);
-    const location = await geocoder.geocode(address);
+    const location = await getGeo(address);
+    
+    var lat;
+    var lng;
+    var new_street;
+    var new_city;
+    var new_state;
+    var new_zip;
+    var new_country;
     console.log(location);
     if (location[0])
     {    
-        const new_street = location[0].streetNumber + " " + location[0].streetName;
-        const new_city = location[0].city;
-        const new_state = location[0].state;
-        const new_zip = location[0].zipcode;
-        const new_country = location[0].country;
-        const lat = location[0].latitude;
-        const lng = location[0].longitude;
-       
-        console.log(lat + lng);
-
+        new_street = location[0].streetNumber + " " + location[0].streetName;
+        new_city = location[0].city;
+        new_state = location[0].state;
+        new_zip = location[0].zipcode;
+        new_country = location[0].country;
+        lat = location[0].latitude;
+        lng = location[0].longitude;
         await req.db.updateContact(fname, lname, phone, email, new_street, new_city,  new_state, new_zip, new_country, contact_by_mail, contact_by_phone, contact_by_email, lat, lng, id);
-   
-        res.redirect('/' + id);
     }
+    else {
+        console.log("\n\n\n*********NO LOCATION FOUND***********\n\n\n");
+    }
+
+    res.redirect('/' + id);
+
 });
 
 

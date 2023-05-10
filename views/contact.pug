@@ -16,7 +16,7 @@ block content
                 table.table.table-striped
                     h1 Contact List
                     thead 
-                        tr  
+                        tr
                             th Name 
                             th Phone 
                             th Email 
@@ -25,7 +25,7 @@ block content
                     tbody 
                         if contacts
                             each c in contacts
-                                tr
+                                tr(onclick = 'on_row_click(this);' lat = c.lat lng = c.lng)
                                     td
                                         section
                                             a(href="/" + c.id) #{c.first_name + " " + c.last_name}
@@ -52,4 +52,11 @@ block content
                                         section  
                                             input.form-check-input.form-inline(type='checkbox', name='contact_by_email', checked=(c.contact_by_email === 1 ? true : false), disabled=true)    
                                             label.form-check-label.form-inline(for='contact_by_email') Email
-                
+        .row 
+            div(id = 'map-container')  
+                div(id = 'map')      
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js", integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM", crossorigin="anonymous")
+    script.
+        loadMap()
+
+    

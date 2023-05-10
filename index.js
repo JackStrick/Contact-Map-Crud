@@ -1,6 +1,7 @@
 //const pug = require('pug');
 const express = require('express');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000
 
 
@@ -41,13 +42,13 @@ app.use((req, res, next) => {
 })
 
 app.set('view engine', 'pug');
-
-
-app.use(express.static('public'))
+app.use(bodyParser.json());
+app.use(express.static('public'));
 
 
 app.use('/', require('./routes/accounts'));
 app.use('/', require('./routes/contacts'));
+//app.use('/places', require('./routes/places'));
 
 //app.use('/something', require('./routes/something'));
 
